@@ -1,0 +1,22 @@
+version: "3"
+services:
+  db:
+    image: mariadb:10
+    container_name: db_mariadb_dev
+    volumes:
+      - mariadb-data:/bitnami/mariadb
+    ports:
+      - "33060:3306"
+    environment:
+      - MARIADB_ROOT_PASSWORD=root
+      - MARIADB_USER=dev
+      - MARIADB_PASSWORD=dev
+      - MARIADB_DATABASE=dev
+    networks:
+      - mariadb-dev-network
+    restart: always
+volumes:
+  mariadb-data:
+networks:
+  mariadb-dev-network:
+    driver: bridge
